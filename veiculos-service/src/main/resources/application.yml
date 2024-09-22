@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: veiculos-service
+  datasource:
+    url: jdbc:h2:mem:veiculosdb  # URL para o banco de dados H2 em memória
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  h2:
+    console:
+      enabled: true  # Habilita o console do H2
+  jpa:
+    hibernate:
+      ddl-auto: create  # Atualiza o esquema do banco de dados automaticamente
+    show-sql: true  # Mostra as consultas SQL no console
+    defer-datasource-initialization: true
+  sql:
+    init:
+      platform: h2
+
+server:
+  port: 8080
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${random.value}
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
